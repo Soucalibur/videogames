@@ -1,5 +1,6 @@
 export const GET_GAMES = "GET_GAMES"
 export const GET_DETAIL = "GET_DETAIL"
+export const GET_GENRES = "GET_GENRES"
 export const POST_GAME = "POST_GAME"
 
 
@@ -19,6 +20,14 @@ export const obtenerDetallesJuego = (id)=>{
         fetch(`http://localhost:3001/videogames/${id}`,)
         .then((response)=>response.json())
         .then((data)=>dispatch({type:GET_DETAIL,payload:data}))
+    }
+}
+
+export const getGenres = ()=>{
+    return function(dispatch){
+        fetch(`http://localhost:3001/genres`)
+        .then((result)=> result.json())
+        .then((data)=> dispatch({type:GET_GENRES, payload:data}))
     }
 }
 

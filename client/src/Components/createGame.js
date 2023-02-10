@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { postGame } from "../redux/actions"
+import { postGame, getGenres } from "../redux/actions"
 
 const Validate = (input)=>{
     let errors = {}
@@ -40,14 +40,20 @@ const CreateGame = ()=>{
 
     const dispatch = useDispatch()
     const history = useHistory()
+    const generos = useSelector((state)=>state.genres)
+
+    useEffect(()=>{
+        dispatch(getGenres())
+    },[])
+
 
     const [input, setInput]= useState({
         name: "",
         description:"" ,
         date: "",
         rating: 0,
-        platforms:"",
-        genre: "",
+        platforms:[],
+        genre: [],
         background_image: ""
     })
     const [error, setError] = useState()
@@ -96,6 +102,29 @@ const CreateGame = ()=>{
 
 	///////////////////////////////////////////////////////////////////////
 
+    const introduceData = (event)=>{
+        event.preventDefault()
+        
+        const {name, value} = event.target
+        console.log("NOMBRE:",name)
+        console.log(input.nombre)
+        console.log("VALOR; ", value)
+        if(!input[name].includes(value) && value !== ""){
+            setInput({...input, [name]:[...input[name], value]})
+            setError(Validate({...input, [name]: value}))
+        }
+
+        
+    }
+
+    const deleteData = (event)=>{
+        event.preventDefault()
+        const {value, name} = event.target
+        const objectDelete = input[name].filter((plataforma)=> plataforma !== value)
+        setInput({...input, [name]: objectDelete })
+        setError(Validate({...input, [name]: objectDelete}))
+    }
+    
     return(
         <div>
             <p>CREAR JUEGO</p>
@@ -128,16 +157,58 @@ const CreateGame = ()=>{
                     </div>
 
                     <div>
+                        
                         <label>platforms</label>
-                        <input name="platforms" value={input.platforms} onChange={introducirDatos}></input>
-                        {error? <p>{error.platforms}</p> :""}
+                        <select name="platforms" onChange={introduceData}>
+                            <option value="">Chose your platforms</option>
+                            <option  value="PC" >PC</option>
+                            <option  value="X-Box" >X-Box</option>
+                            <option  value="PlayStation" >PlayStation</option>
+                        </select>
+                       
+                        {input.platforms.map((plataforma)=>{
+                            return(
+                                <div>
+                                    <button name="platforms" value={plataforma} onClick={deleteData}>X</button>
+                                    <p>{plataforma}</p>
+                                </div>
+                                
+                                )
+                            })}
+                            {error? <p>{error.platforms}</p> :""}
                     </div>
 
                     <div>
-                        <label>genre</label>
-                        <input name="genre" value={input.genre} onChange={introducirDatos}></input>
-                        {error? <p>{error.genre}</p> :""}
+                        
+                        <select name="genre" onChange={introduceData}>
+                            <option name="genre" value= "">Chose your genres...</option>
+                            {generos.map((g)=>{
+                                return(
+                                    
+                                    <option value={g.nombre}> {g.nombre}</option>
+                                    
+                                )
+                            }).sort(((a,b)=>{
+                                if(a.nombre > b.nombre){
+                                    return -1
+                                }
+                                else{
+                                    return 1
+                                }
+                            }))}
+                        </select>
 
+                        {input.genre.map((genres)=>{
+                            return(
+                                <div>
+                                    <button name="genre" value={genres} onClick={deleteData}>X</button>
+                                    <p>{genres}</p>
+                                </div>
+                                
+                                )
+                            })}
+                        {error? <p>{error.genre}</p> :""}
+        
                     </div>
 
                     <div>

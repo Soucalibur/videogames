@@ -18,7 +18,7 @@ const router = Router();
 
 router.get("/videogames",async(req,res)=>{
     const{name} = req.query
-
+    
     try {
         const respuesta = await fetch(`https://api.rawg.io/api/games?key=${DB_KEY}&page_size=40`)
         .then((response)=>response.json())
@@ -55,9 +55,7 @@ router.get("/videogames",async(req,res)=>{
         const arrayJuegosBD = []
         respuestaBD.forEach((videogame) => arrayJuegosBD.push(videogame.dataValues));
         
-        // console.log(juegos5)
-        // console.log("respuestaBD: ",respuestaBD)
-        // console.log("probando: ",  arrayJuegosBD)
+        
         let arrayJuegos = [...juegos,...juegos2,...juegos3].map((objetos)=> ({
             id:objetos.id,
             name: objetos.name,
@@ -70,8 +68,6 @@ router.get("/videogames",async(req,res)=>{
 
         let totalJuegos = arrayJuegos.concat(arrayRespuestaBD)
 
-        //console.log("arrayyyyyy: ",arrayJuegos)
-
         if(name){
 
 
@@ -79,10 +75,10 @@ router.get("/videogames",async(req,res)=>{
             let resultados = []
             for(let i = 0;i<totalJuegos.length;i++){
                 let nombre = name.split(" ").join("").toLowerCase()
-                let busqueda = arrayJuegos[i].name.split(" ").join("").toLowerCase()
+                let busqueda = totalJuegos[i].name.split(" ").join("").toLowerCase()
                 let contador = 0
                 if(busqueda.includes(nombre)){
-                    resultados.push(arrayJuegos[i])
+                    resultados.push(totalJuegos[i])
                     contador++
                 }
                 if(contador=== 15)break
@@ -159,7 +155,6 @@ router.get("/genres",async(req,res)=>{
         const generos = arrayBusqueda.map((elemento)=> ({nombre: elemento.name}))
         const generoBD = await Generos.bulkCreate(generos)
 
-        console.log(Generos)
         res.status(200).send(generoBD)
 
 
@@ -179,12 +174,9 @@ router.post("/videogames",async (req,res)=>{
             where:{
                 nombre: genre
             },
+            limit: genre.length,
         })
-        console.log("generoBD: ",generoBD)
-        
-        nuevoJuego.setGeneros(generoBD)
-        console.log(nuevoJuego)
-
+        nuevoJuego.addGeneros(generoBD)
         res.status(200).send(nuevoJuego.dataValues)
 
     } catch (error) {

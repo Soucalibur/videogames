@@ -1,9 +1,10 @@
-import {GET_GAMES,GET_DETAIL} from "./actions"
+import {GET_GAMES,GET_DETAIL, GET_GENRES} from "./actions"
 
 
 const initialState = {
     games: [],
-    infGames: {}
+    infGames: {},
+    genres: []
 }
 
 const rootRouter = (state=initialState,action)=>{
@@ -19,6 +20,11 @@ const rootRouter = (state=initialState,action)=>{
             return{
                 ...state,
                 infGames:action.payload
+            }
+        case GET_GENRES:
+            return{
+                ...state,
+                genres: action.payload
             }
 
         default:
