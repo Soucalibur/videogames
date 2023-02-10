@@ -18,8 +18,6 @@ const Home = ()=>{
 
     }, [dispatch])
 
-    console.log(juegos)
-
 
     if(!juegos.length){
         return(

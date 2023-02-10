@@ -34,7 +34,7 @@ export const getGenres = ()=>{
 export const postGame = (videogame)=>{
     return function(dispatch){
         fetch(`http://localhost:3001/videogames`,{
-            methot: "POST",
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },

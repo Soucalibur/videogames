@@ -15,7 +15,7 @@ function App() {
       <Route exact path="/home" component={Home} />
       <Route exact path="/home/juegos/:id" component={Juegos} />
       <Route path="/home/createGame" component={CreateGame} />
-      <Route path="/home/gamecreated" component={GameCreated} />
+      <Route path="/gamecreated" component={GameCreated} />
 
     </div>
   );

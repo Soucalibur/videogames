@@ -20,9 +20,10 @@ router.get("/videogames",async(req,res)=>{
     const{name} = req.query
     
     try {
-        const respuesta = await fetch(`https://api.rawg.io/api/games?key=${DB_KEY}&page_size=40`)
+        const respuesta = await fetch(`https://api.rawg.io/api/games?key=${DB_KEY}&page_size=1`)
         .then((response)=>response.json())
         const juegos = respuesta.results
+        
         const respuesta2 = await fetch(`https://api.rawg.io/api/games?key=${DB_KEY}&page_size=40&page=2`)
         .then((response)=>response.json())
         const juegos2 = respuesta2.results
@@ -42,11 +43,11 @@ router.get("/videogames",async(req,res)=>{
         const respuestaBD = await Videogame.findAll({
             include: [{ model: Generos, attributes: ['nombre'],through: { attributes: [] } }]
         })
-        console.log("respuestaBD AAAAAAA: ",respuestaBD)
 
         const arrayRespuestaBD = respuestaBD.map((juego)=> ({
             id:juego.id,
             name: juego.name,
+            date: juego.date,
             img: juego.background_image,
             genres:juego.Generos,
             platforms:juego.platforms,
@@ -59,6 +60,7 @@ router.get("/videogames",async(req,res)=>{
         let arrayJuegos = [...juegos,...juegos2,...juegos3].map((objetos)=> ({
             id:objetos.id,
             name: objetos.name,
+            date:objetos.released,
             img: objetos.background_image,
             genres:objetos.genres,
             platforms:objetos.platforms,

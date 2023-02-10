@@ -13,6 +13,9 @@ const Validate = (input)=>{
     else if(!input.description){
         errors.description = "Introduce a description"
     }
+    else if(input.rating < 0.1 || input.rating > 5 || !input.rating){
+        errors.rating = "Introduce a rating between 1-5"
+    }
     else if(!input.platforms){
         errors.platforms = "Introduce at least one platform"
     }
@@ -51,7 +54,7 @@ const CreateGame = ()=>{
         name: "",
         description:"" ,
         date: "",
-        rating: 0,
+        rating: "",
         platforms:[],
         genre: [],
         background_image: ""
@@ -67,11 +70,11 @@ const CreateGame = ()=>{
     }
     console.log(error)
 
-    const sendData = (event)=>{
+    const sendData = async (event)=>{
         event.preventDefault();
         try {
-            dispatch(postGame(input))
-            .then(history.push("/home/gamecreated"))
+            await dispatch(postGame(input))
+            history.push("/gamecreated")
         } catch (error) {
             alert(error)
         }
@@ -104,11 +107,8 @@ const CreateGame = ()=>{
 
     const introduceData = (event)=>{
         event.preventDefault()
-        
         const {name, value} = event.target
-        console.log("NOMBRE:",name)
-        console.log(input.nombre)
-        console.log("VALOR; ", value)
+
         if(!input[name].includes(value) && value !== ""){
             setInput({...input, [name]:[...input[name], value]})
             setError(Validate({...input, [name]: value}))
@@ -116,6 +116,7 @@ const CreateGame = ()=>{
 
         
     }
+    console.log(input)
 
     const deleteData = (event)=>{
         event.preventDefault()
@@ -152,7 +153,7 @@ const CreateGame = ()=>{
 
                     <div>
                         <label>rating</label>
-                        <input name="rating" value={input.rating} onChange={introducirDatos}></input>
+                        <input name="rating" value={input.rating} onChange={introducirDatos} type="number" min="1" max="5" placeholder="1-5"></input>
                         {error? <p>{error.rating}</p> :""}
                     </div>
 
