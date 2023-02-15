@@ -1,0 +1,11 @@
+.containerPaginate{
+    background-color: yellow;
+    display: flex;
+   
+    justify-content: space-around;
+    
+}
+
+.numbersPaginate{
+    cursor: pointer;
+}

@@ -1,0 +1,8 @@
+.containerNavbar{
+
+    display: flex;
+    background-color: yellow;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}

@@ -68,13 +68,13 @@ const CreateGame = ()=>{
         setInput({...input,[nombre]:value})
         setError(Validate({...input,[nombre]:value}))
     }
-    console.log(error)
+    
 
     const sendData = async (event)=>{
         event.preventDefault();
         try {
             await dispatch(postGame(input))
-            history.push("/gamecreated")
+            history.push("/home/gamecreated")
         } catch (error) {
             alert(error)
         }
@@ -116,7 +116,7 @@ const CreateGame = ()=>{
 
         
     }
-    console.log(input)
+    
 
     const deleteData = (event)=>{
         event.preventDefault()

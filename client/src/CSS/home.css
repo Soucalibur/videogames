@@ -4,13 +4,6 @@
     box-sizing: border-box;
 }
 
-.contenedor{
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    grid-auto-rows: 30px;
-    
-}
-
 .nav{
     grid-column: 1/13;
     grid-row: 1/5;
@@ -19,13 +12,9 @@
 }
 
 .contenedorJuegos{
-    grid-column: 1/13;
-    grid-row: 5/30;
-    
+
     display: flex;
-   
     flex-wrap: wrap;
-    
     
 }
 
@@ -52,8 +41,7 @@
 
 .imgBackground{
     z-index: -1;
-    grid-column: 1/13;
-    grid-row: 1/40;
+    
     width: 100%;
     height: 100%;
     object-fit: cover;
