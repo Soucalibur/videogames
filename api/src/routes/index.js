@@ -70,30 +70,26 @@ router.get("/videogames",async(req,res)=>{
 
         let totalJuegos = arrayJuegos.concat(arrayRespuestaBD)
 
-        if(name){
+        // if(name){
 
-
-
-            let resultados = []
-            for(let i = 0;i<totalJuegos.length;i++){
-                let nombre = name.split(" ").join("").toLowerCase()
-                let busqueda = totalJuegos[i].name.split(" ").join("").toLowerCase()
-                let contador = 0
-                if(busqueda.includes(nombre)){
-                    resultados.push(totalJuegos[i])
-                    contador++
-                }
-                if(contador=== 15)break
-            }
-
+        //     let resultados = []
+        //     for(let i = 0;i<totalJuegos.length;i++){
+        //         let nombre = name.split(" ").join("").toLowerCase()
+        //         let busqueda = totalJuegos[i].name.split(" ").join("").toLowerCase()
+        //         let contador = 0
+        //         if(busqueda.includes(nombre)){
+        //             resultados.push(totalJuegos[i])
+        //             contador++
+        //         }
+        //         if(contador=== 15)break
+        //     }
 
             
-            res.status(200).send(resultados)
-        }
+        //     res.status(200).send(resultados)
+        // }
 
-        else{
-            res.status(200).send(totalJuegos)
-        }
+        res.status(200).send(totalJuegos)
+        
         
 
     } catch (error) {

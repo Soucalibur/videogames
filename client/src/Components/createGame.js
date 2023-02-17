@@ -183,20 +183,20 @@ const CreateGame = ()=>{
                         
                         <select name="genre" onChange={introduceData}>
                             <option name="genre" value= "">Chose your genres...</option>
-                            {generos.map((g)=>{
+                            {generos.sort(((a,b)=>{
+                                if(a.nombre > b.nombre){
+                                    return 1
+                                }
+                                else{
+                                    return -1
+                                }
+                            })).map((g)=>{
                                 return(
                                     
                                     <option value={g.nombre}> {g.nombre}</option>
                                     
                                 )
-                            }).sort(((a,b)=>{
-                                if(a.nombre > b.nombre){
-                                    return -1
-                                }
-                                else{
-                                    return 1
-                                }
-                            }))}
+                            })}
                         </select>
 
                         {input.genre.map((genres)=>{

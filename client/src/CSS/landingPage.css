@@ -1,0 +1,44 @@
+ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+
+.containerLandingPage{
+    display: flex;
+    flex-direction: column;
+}
+
+.backgroundLandingPage{
+    
+    width: 100%;
+    height: 100%;
+    position:fixed;
+    
+    z-index: -1;
+    border: 0;
+    
+}
+
+a:link{
+    text-decoration: none;
+}
+.textLandingPage{
+    font-size: 2em;
+    font-family: "Orbitron";
+    margin: 7em 9em 10em 9em;
+    border: solid 4px;
+    border-radius: 10px;
+    animation: BGcolorChanging-4colors 2s linear infinite alternate both;
+}
+@keyframes BGcolorChanging-4colors{
+    0%{
+        color: red;
+    }
+    33.33333%{
+        color: blue;
+    }
+    66.66666%{
+        color:green
+    }
+    100%{
+        color: yellow;
+    }
+}
