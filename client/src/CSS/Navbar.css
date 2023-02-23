@@ -1,7 +1,7 @@
 .containerNavbar{
 
     display: flex;
-    background-color: yellow;
+    background: linear-gradient(62deg, rgba(20,66,156,0.7539390756302521) 12%, rgba(46,191,215,0.7511379551820728) 27%, rgba(46,191,215,1) 80%, rgba(46,49,215,0.7567401960784313) 94%);
     flex-wrap: wrap;
     justify-content: space-around;
 

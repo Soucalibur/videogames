@@ -1,11 +1,28 @@
 .containerPaginate{
-    background-color: yellow;
     display: flex;
-   
     justify-content: space-around;
-    
+    align-items: center;
 }
 
 .numbersPaginate{
     cursor: pointer;
+    background: linear-gradient(62deg, rgba(20,66,156,0.7539390756302521) 12%, rgba(46,191,215,0.7511379551820728) 27%, rgba(46,191,215,1) 80%, rgba(46,49,215,0.7567401960784313) 94%);
+    width: 8em;
+    height: 2em;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+}
+
+.numberPaginate{
+    background: linear-gradient(62deg, rgba(20,66,156,0.7539390756302521) 12%, rgba(46,191,215,0.7511379551820728) 27%, rgba(46,191,215,1) 80%, rgba(46,49,215,0.7567401960784313) 94%);
+    width: 2.7em;
+    height: 2.7em;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
 }

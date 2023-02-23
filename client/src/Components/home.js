@@ -15,7 +15,7 @@ const Home = ()=>{
     const juegos = useSelector((state)=>state.games)
     
     const [currentPage, setCurrentPage] = useState(1)
-    const [gamesPerPage, setGamesPerPage] = useState(10)
+    const [gamesPerPage, setGamesPerPage] = useState(9)
     const indexOfLastGame = currentPage * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGame = juegos.slice(indexOfFirstGame, indexOfLastGame)
@@ -54,9 +54,9 @@ const Home = ()=>{
                                 
                                 <Link to={`/home/juegos/${juego.id}`}>
                                     <p className="tituloGame">{juego.name} </p>
+                                    <img src={juego.img} className="imgContenedorJuegos" alt="imgContainer"></img>
                                 </Link>
                                 
-                                <img src={juego.img} className="imgContenedorJuegos" alt="imgContainer"></img>
                                 <p className="ratingGame">rating: {juego.rating}</p>
                             </div>
                         )

@@ -20,7 +20,7 @@ router.get("/videogames",async(req,res)=>{
     const{name} = req.query
     
     try {
-        const respuesta = await fetch(`https://api.rawg.io/api/games?key=${DB_KEY}&page_size=1`)
+        const respuesta = await fetch(`https://api.rawg.io/api/games?key=${DB_KEY}&page_size=40`)
         .then((response)=>response.json())
         const juegos = respuesta.results
         

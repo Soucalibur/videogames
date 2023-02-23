@@ -32,19 +32,19 @@ const Filter = ()=>{
         <div className="containerFilter">
             
             <form onSubmit={buscarJuegoPorNombre}>
-                <label> Búsqueda </label>
+                <label> Búsqueda por nombre </label> <br/>
                 <input
                     name="nombre"
                     value={input.nombre}
                     onChange={changeInput}
-                    placeholder="Introduce el nombre del juego..." 
+                    placeholder="Ej: Portal 2..." 
                 />
 
-                <button type="sumbit">BUSCAR</button>
+                <button type="sumbit" className="buttonFilter">BUSCAR</button>
 
             </form>
             <form onSubmit={buscarJuegoPorGenero}>
-                <label>Buscar por género</label>
+                <label>Buscar por género</label> <br/>
                     <select name="genero" onChange={changeInput}>
                         {generos.sort((a,b)=>{
                             if(a.nombre > b.nombre){
@@ -63,7 +63,7 @@ const Filter = ()=>{
                         
                     </select>
 
-                    <button type="sumbit">BUSCAR</button>
+                    <button type="sumbit" className="buttonFilter">BUSCAR</button>
 
             </form>
         </div>

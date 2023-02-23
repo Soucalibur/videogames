@@ -21,11 +21,11 @@ const Paginate = ({gamesPerPage, totalGames, paginate, currentPage})=>{
                             
                         )
                     })} */}
-                    <p onClick={()=>paginate(1)} > Primera página</p>
-                    <p  onClick={currentPage > 1 ? ()=>paginate(currentPage - 1) : ()=>""}>Anterior</p>
-                    <p>Pag: {currentPage}</p>
-                    <p onClick={ currentPage < pageNumbers.length ? ()=>paginate(currentPage + 1) : ()=>""}>Siguiente</p>
-                    <p onClick={()=>paginate(pageNumbers.length)} > Última página</p>
+                    <p onClick={()=>paginate(1)} className="numbersPaginate" > Primera página</p>
+                    <p  onClick={currentPage > 1 ? ()=>paginate(currentPage - 1) : ()=>""} className="numbersPaginate" >Anterior</p>
+                    <p className="numberPaginate" >{currentPage}</p>
+                    <p onClick={ currentPage < pageNumbers.length ? ()=>paginate(currentPage + 1) : ()=>""} className="numbersPaginate" >Siguiente</p>
+                    <p onClick={()=>paginate(pageNumbers.length)} className="numbersPaginate" > Última página</p>
         </div>
     )
 }
